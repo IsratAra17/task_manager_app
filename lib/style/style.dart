@@ -32,3 +32,20 @@ TextStyle Head6Style(textColor)
     fontWeight: FontWeight.w400,
   );
 }
+
+InputDecoration AppInputDecoration(label)
+{
+  return InputDecoration(
+focusedBorder: const OutlineInputBorder(
+  borderSide: const BorderSide(color: colorGreen,width: 1),
+),
+    fillColor: colorWhite,
+    filled: true,
+    contentPadding: EdgeInsets.fromLTRB(20, 10, 10, 20),
+    enabledBorder: const OutlineInputBorder(
+      borderSide: const BorderSide(color: colorWhite,width: 0.0),
+    ),
+    border: OutlineInputBorder(),
+    labelText: label,
+  );
+}
