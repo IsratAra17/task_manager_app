@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 const colorRed = Color.fromRGBO(231, 28, 36, 1);
 const colorDark = Color.fromRGBO(136, 28, 32, 1);
@@ -54,5 +55,16 @@ DecoratedBox AppDropDownStyle(child) {
       padding: EdgeInsets.only(left: 30, right: 30),
       child: child,
     ),
+  );
+}
+SvgPicture ScreenBackground(context)
+{
+  return SvgPicture.asset(
+    'assets/images/screen-back.svg',
+    alignment:Alignment.center ,
+    width:MediaQuery.of(context).size.width ,
+    height:MediaQuery.of(context).size.width ,
+    fit: BoxFit.cover,
+
   );
 }
