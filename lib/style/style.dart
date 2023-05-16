@@ -22,4 +22,13 @@ TextStyle Head1Text(textColor)
     fontWeight: FontWeight.w700,
 
   );
+
+}
+TextStyle Head6Style(textColor)
+{
+  return TextStyle(
+    fontSize:16,
+    fontFamily:'poppins' ,
+    fontWeight: FontWeight.w400,
+  );
 }
