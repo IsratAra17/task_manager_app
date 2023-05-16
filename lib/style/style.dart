@@ -77,3 +77,10 @@ ButtonStyle AppButtonStyle(){
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))
   );
 }
+TextStyle ButtonTextStyle(){
+  return TextStyle(
+      fontWeight: FontWeight.w400,
+    fontFamily: 'poppins',
+    fontSize: 14,
+  );
+}
