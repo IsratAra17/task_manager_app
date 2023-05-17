@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:taskmanager/style/style.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -11,12 +13,19 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ScreenBackground(context),
-        Container(padding: EdgeInsets.all(30),
-        child: Center(child: Image.asset("assets/images/tasklogo.png")),alignment: Alignment.center,)
-      ],
+    return Scaffold(
+      body: Stack(
+        children: [
+          ScreenBackground(context),
+          Container(
+            padding: EdgeInsets.all(30),
+            child: Center(
+              child: SvgPicture.asset("assets/images/logo.svg",
+                  alignment: Alignment.center),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

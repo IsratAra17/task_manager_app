@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Task Manager',
-      initialRoute: '/',
+      initialRoute:'/login',
       routes: {
         '/':(context)=>SplashScreen(),//home
         '/login':(context)=>LoginScreen(),
