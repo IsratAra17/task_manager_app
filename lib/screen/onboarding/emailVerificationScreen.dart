@@ -17,9 +17,10 @@ class _EmailVerificationState extends State<EmailVerification> {
         children: [
           ScreenBackground(context),
           Container(
-            height: double.infinity,
             padding: EdgeInsets.all(30),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(('Your Email Address'),style: Head1Text(colorDarkBlue),),
               SizedBox(height: 1,),
