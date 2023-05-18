@@ -53,3 +53,25 @@ Future<bool>RegisterRequest(FormValues)async{
     }
 }
 
+Future<bool>VerifyEmailRequest(Email)async{
+
+    var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}");
+
+    var response = await http.post(URL, headers: RequestHeader);
+
+    var ResultCode =response.statusCode;
+    var ResultBody = json.decode(response.body);
+
+
+    if(ResultCode==200 && ResultBody['status']=='success')
+    {
+        SuccessToast("Request Success!");
+
+        return true;
+    }
+    else
+    {
+        ErrorToast("Request Failed! Try again!!");
+        return false;
+    }
+}
