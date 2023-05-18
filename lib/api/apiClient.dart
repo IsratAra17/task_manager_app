@@ -57,7 +57,7 @@ Future<bool>VerifyEmailRequest(Email)async{
 
     var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}");
 
-    var response = await http.post(URL, headers: RequestHeader);
+    var response = await http.get(URL, headers: RequestHeader);
 
     var ResultCode =response.statusCode;
     var ResultBody = json.decode(response.body);
@@ -75,3 +75,4 @@ Future<bool>VerifyEmailRequest(Email)async{
         return false;
     }
 }
+
