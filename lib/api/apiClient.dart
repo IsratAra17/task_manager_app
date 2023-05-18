@@ -29,4 +29,27 @@ Future<bool>LoginRequest(FormValues) async {
   }
 }
 
+Future<bool>RegisterRequest(FormValues)async{
+
+    var URL=Uri.parse("${BaseURL}/registration");
+    var PostBody=json.encode(FormValues);
+
+    var response = await http.post(URL, headers: RequestHeader, body: PostBody);
+
+    var ResultCode =response.statusCode;
+    var ResultBody = json.decode(response.body);
+
+
+    if(ResultCode==200 && ResultBody['status']=='success')
+    {
+        SuccessToast("Request Success!");
+
+        return true;
+    }
+    else
+    {
+        ErrorToast("Request Failed! Try again!!");
+        return false;
+    }
+}
 
