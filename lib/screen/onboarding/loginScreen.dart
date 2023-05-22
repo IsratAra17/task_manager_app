@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: AppButtonStyle(),
                             onPressed: () {
 
-                              InputOnChange(Mapkey, Textvalue);
+
                             },
                             child: SuccessButtonChild('Sign Up')),
                       ),
