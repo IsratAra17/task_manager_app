@@ -65,10 +65,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ScreenBackground(context),
           Container(
 
-              padding: EdgeInsets.all(30),
-
               child: Center(
-                child: SingleChildScrollView(
+                child: Loading?(Center(child: CircularProgressIndicator(),)):(SingleChildScrollView(
+                  padding: EdgeInsets.all(30),
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -100,14 +100,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: AppButtonStyle(),
                             onPressed: () {
 
-
+                              FormOnsubmit();
                             },
                             child: SuccessButtonChild('Sign Up')),
                       ),
                     ],
                   ),
-                ),
-              )),
+                )),
+              ),
+          ),
         ],
       ),
     );
