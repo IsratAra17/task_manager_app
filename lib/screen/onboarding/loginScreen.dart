@@ -24,6 +24,37 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
 
+  FormOnsubmit()async{
+    if(FormValues['email']!.length==0)
+    {
+      ErrorToast('Email Required');
+
+    }
+    else if(FormValues['password']!.length==0)
+    {
+      ErrorToast('Password Required');
+
+    }
+    else{
+      setState(() {
+        Loading==true;
+      });
+
+      bool res=await LoginRequest(FormValues);
+      if(res==true)
+      {
+        //navigate to dashboard
+      }
+      else
+      {
+        setState(() {
+          Loading=false;
+        });
+      }
+
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
