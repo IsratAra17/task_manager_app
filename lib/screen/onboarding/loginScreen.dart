@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:taskmanager/api/apiClient.dart';
 import 'package:taskmanager/style/style.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -11,6 +12,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  Map<String,String>FormValues={"email":"","password":""};
+  bool Loading=false;
+  InputOnChange(Mapkey,Textvalue)
+  {
+    setState(() {
+      FormValues.update(Mapkey, (value) => Textvalue);
+
+  });
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +51,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 20,
                       ),
                       TextFormField(
+                        onChanged:(Textvalue) {
+                          InputOnChange("email",Textvalue);
+                        },
+
                         decoration: AppInputDecoration("Email Address"),
                       ),
                       TextFormField(
+                        onChanged: (Textvalue){InputOnChange("password", Textvalue);},
                         decoration: AppInputDecoration("Password"),
                       ),
                       SizedBox(
@@ -48,7 +67,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         child: ElevatedButton(
                             style: AppButtonStyle(),
-                            onPressed: () {},
+                            onPressed: () {
+
+                              InputOnChange(Mapkey, Textvalue);
+                            },
                             child: SuccessButtonChild('Sign Up')),
                       ),
                     ],

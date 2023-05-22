@@ -100,7 +100,7 @@ Future<bool>VerifyOTPrequest(Email,OTP)async{
 }
 Future<bool>SetPasswordRequest(FormValues) async {
     var URL=Uri.parse("${BaseURL}/RecoverResetPass");
-g    var PostBody = json.encode(FormValues);
+   var PostBody = json.encode(FormValues);
     var response = await http.post(URL, headers: RequestHeader, body: PostBody);
 
 
