@@ -64,50 +64,49 @@ class _LoginScreenState extends State<LoginScreen> {
         children: [
           ScreenBackground(context),
           Container(
+alignment: Alignment.center,
+              child: Loading?(Center(child: CircularProgressIndicator(),)):(SingleChildScrollView(
+                padding: EdgeInsets.all(30),
 
-              child: Center(
-                child: Loading?(Center(child: CircularProgressIndicator(),)):(SingleChildScrollView(
-                  padding: EdgeInsets.all(30),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Get Started With', style: Head1Text(colorDarkBlue)),
+                    SizedBox(
+                      height: 1,
+                    ),
+                    Text('Learn with Ara', style: Head6Style(colorLightGray)),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      onChanged:(Textvalue) {
+                        InputOnChange("email",Textvalue);
+                      },
 
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Get Started With', style: Head1Text(colorDarkBlue)),
-                      SizedBox(
-                        height: 1,
-                      ),
-                      Text('Learn with Ara', style: Head6Style(colorLightGray)),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        onChanged:(Textvalue) {
-                          InputOnChange("email",Textvalue);
-                        },
+                      decoration: AppInputDecoration("Email Address"),
+                    ),
+                    SizedBox(height: 20,),
+                    TextFormField(
+                      onChanged: (Textvalue){InputOnChange("password", Textvalue);},
+                      decoration: AppInputDecoration("Password"),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      child: ElevatedButton(
+                          style: AppButtonStyle(),
+                          onPressed: () {
 
-                        decoration: AppInputDecoration("Email Address"),
-                      ),
-                      TextFormField(
-                        onChanged: (Textvalue){InputOnChange("password", Textvalue);},
-                        decoration: AppInputDecoration("Password"),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        child: ElevatedButton(
-                            style: AppButtonStyle(),
-                            onPressed: () {
-
-                              FormOnsubmit();
-                            },
-                            child: SuccessButtonChild('Sign Up')),
-                      ),
-                    ],
-                  ),
-                )),
-              ),
+                            FormOnsubmit();
+                          },
+                          child: SuccessButtonChild('Sign Up')),
+                    ),
+                  ],
+                ),
+              )),
           ),
         ],
       ),
