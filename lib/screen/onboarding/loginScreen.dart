@@ -24,36 +24,23 @@ class _LoginScreenState extends State<LoginScreen> {
 
   }
 
-  FormOnsubmit()async{
-    if(FormValues['email']!.length==0)
-    {
-      ErrorToast('Email Required');
-
+  FormOnSubmit() async{
+    if(FormValues['email']!.length==0){
+      ErrorToast('Email Required !');
     }
-    else if(FormValues['password']!.length==0)
-    {
-      ErrorToast('Password Required');
-
+    else if(FormValues['password']!.length==0){
+      ErrorToast('Password Required !');
     }
     else{
-      setState(() {
-        Loading==true;
-      });
-
+      setState(() {Loading=true;});
       bool res=await LoginRequest(FormValues);
-      if(res==true)
-      {
-        //navigate to dashboard
+      if(res==true){
+        Navigator.pushNamedAndRemoveUntil(context, "/newTaskList", (route) => false);
       }
-      else
-      {
-        setState(() {
-          Loading=false;
-        });
+      else{
+        setState(() {Loading=false;});
       }
-
     }
-
   }
 
   @override
@@ -100,9 +87,9 @@ alignment: Alignment.center,
                           style: AppButtonStyle(),
                           onPressed: () {
 
-                            FormOnsubmit();
+                            FormOnSubmit();
                           },
-                          child: SuccessButtonChild('Sign Up')),
+                          child: SuccessButtonChild('Login')),
                     ),
                   ],
                 ),
