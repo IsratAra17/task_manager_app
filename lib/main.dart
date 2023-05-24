@@ -6,13 +6,23 @@ import 'package:taskmanager/screen/onboarding/registrationScreen.dart';
 import 'package:taskmanager/screen/onboarding/setPasswordScreen.dart';
 import 'package:taskmanager/screen/onboarding/splashScreen.dart';
 import 'package:taskmanager/screen/task/newTaskListScreen.dart';
+import 'package:taskmanager/utility/utility.dart';
 
-void main() {
-  runApp(const MyApp());
+main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  String? token= await ReadUserData('token');
+  if(token==null){
+    runApp( MyApp("/login"));
+  }
+  else{
+    runApp( MyApp("/newTaskList"));
+  }
 }
 
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String FirstRoute;
+  MyApp(this.FirstRoute);
 
   // This widget is the root of your application.
   @override
@@ -20,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Task Manager',
-      initialRoute:'/login',
+      initialRoute:FirstRoute,
       routes: {
         '/':(context)=>SplashScreen(),//home
         '/login':(context)=>LoginScreen(),

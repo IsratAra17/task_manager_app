@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taskmanager/api/apiClient.dart';
 import 'package:taskmanager/style/style.dart';
+import 'package:taskmanager/utility/utility.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,15 +15,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  Map<String,String>FormValues={"email":"","password":""};
+  Map<String,String> FormValues={"email":"", "password":""};
   bool Loading=false;
-  InputOnChange(Mapkey,Textvalue)
-  {
+
+  InputOnChange(MapKey, Textvalue){
     setState(() {
-      FormValues.update(Mapkey, (value) => Textvalue);
-
-  });
-
+      FormValues.update(MapKey, (value) => Textvalue);
+    });
   }
 
   FormOnSubmit() async{
@@ -35,14 +35,13 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {Loading=true;});
       bool res=await LoginRequest(FormValues);
       if(res==true){
-        Navigator.pushNamedAndRemoveUntil(context, "/newTaskList", (route) => false);
+        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
       }
       else{
         setState(() {Loading=false;});
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
