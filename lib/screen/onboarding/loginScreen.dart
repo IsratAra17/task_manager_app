@@ -90,6 +90,37 @@ alignment: Alignment.center,
                           },
                           child: SuccessButtonChild('Login')),
                     ),
+                    SizedBox(height: 20,),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Column(
+                        children: [
+                          SizedBox(height: 20,),
+                        InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context,"/emailVerification");
+                          },
+                          child: Text('Forget Password?',style: Head7Style(colorLightGray),),
+                        ),
+                          SizedBox(height: 15,),
+                          InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, "/registration");
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+
+                              children: [
+                                Text("Don't have a account?",style: Head7Style(colorDarkBlue),),
+                                Text(" Sign Up",style: Head7Style(colorGreen),),
+                              ],
+                            ),
+                          )
+
+
+                        ],
+                      ),
+                    )
                   ],
                 ),
               )),
