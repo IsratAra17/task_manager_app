@@ -16,7 +16,7 @@ Future<void>WriteEmailVerification(Email)async{
   await prefs.setString('EmailVerification', Email);
 }
 Future<void>WriteOTPVerification(OTP)async{
-  final prefs=SharedPreferences.getInstance();
+  final prefs=await SharedPreferences.getInstance();
   await prefs.setString('OTPVerification',OTP);
 }
 Future<String?> ReadUserData(Key) async {

@@ -142,7 +142,7 @@ PinTheme AppOTPstyle()
     shape: PinCodeFieldShape.box,
     fieldHeight: 50,
     borderWidth: 0.5,
-    fieldWidth: 451,
+    fieldWidth: 40,
     activeFillColor: Colors.white,
 
   );

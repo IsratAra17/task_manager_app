@@ -13,7 +13,7 @@ class EmailVerification extends StatefulWidget {
 
 class _EmailVerificationState extends State<EmailVerification> {
   Map<String, String> Formvalues = {"email": ""};
-  bool Loading = true;
+  bool Loading = false;
   InputOnChange(MapKey, Textvalue) {
     setState(() {
       Formvalues.update(MapKey, (value) => Textvalue);
@@ -21,7 +21,7 @@ class _EmailVerificationState extends State<EmailVerification> {
   }
 
   FormOnsubmit() async {
-    if (Formvalues['emial']!.length == 0) {
+    if (Formvalues['email']!.length == 0) {
       ErrorToast("Email Required!");
     } else {
       setState(() {
