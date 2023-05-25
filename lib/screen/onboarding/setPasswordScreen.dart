@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/utility/utility.dart';
 
+import '../../api/apiClient.dart';
 import '../../style/style.dart';
 
 class SetPasswordScreen extends StatefulWidget {
@@ -11,48 +13,90 @@ class SetPasswordScreen extends StatefulWidget {
 }
 
 class _SetPasswordScreenState extends State<SetPasswordScreen> {
+  Map<String,String>FormValues={"email":"","otp":"","password":"","cpassword":""};
+  bool Loading=false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    callStoreData();
+    super.initState();
+  }
+  callStoreData()async{
+    String? OTP=await ReadUserData("OTPVerification");
+    String? Email=await ReadUserData("EmailVerification");
+    InputOnChange("email", Email);
+    InputOnChange("OTP", OTP);
+
+  }
+  InputOnChange(MapKey, Textvalue){
+    setState(() {
+      FormValues.update(MapKey, (value) => Textvalue);
+    });
+  }
+
+  FormOnSubmit() async{
+    if(FormValues['password']!.length==0){
+      ErrorToast('Password Required !');
+    }
+    else if(FormValues['password']!=FormValues['cpassword']){
+      ErrorToast('Confirm password should be same!');
+    }
+    else{
+      setState(() {Loading=true;});
+      bool res=await SetPasswordRequest(FormValues);
+      if(res==true){
+        Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
+      }
+      else{
+        setState(() {Loading=false;});
+      }
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      Stack(
+      body: Stack(
         children: [
           ScreenBackground(context),
           Container(
-
+            alignment: Alignment.center,
+            child: Loading?(Center(child: CircularProgressIndicator())):(SingleChildScrollView(
               padding: EdgeInsets.all(30),
-
-              child: Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Set Password", style: Head1Text(colorDarkBlue)),
-                    SizedBox(height: 1),
-                    Text("Minimum length password 8 character with Latter and number combination ",
-                        style: Head6Style(colorLightGray)),
-                    SizedBox(height: 20),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      decoration: AppInputDecoration("Password"),
-                    ),
-                    TextFormField(
-                      decoration: AppInputDecoration("Confirm Password"),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: ElevatedButton(
-                          style: AppButtonStyle(),
-                          onPressed: () {},
-                          child: SuccessButtonChild('Confirm')),
-                    ),
-                  ],
-                ),
-              )),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Set Password", style: Head1Text(colorDarkBlue)),
+                  SizedBox(height: 1),
+                  Text("Minimum length password 8 character with Latter and number combination ", style: Head7Style(colorLightGray)),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    onChanged: (Textvalue){
+                      InputOnChange("password",Textvalue);
+                    },
+                    decoration: AppInputDecoration("Password"),
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    onChanged: (Textvalue){
+                      InputOnChange("cpassword",Textvalue);
+                    },
+                    decoration: AppInputDecoration("Confirm Password"),
+                  ),
+                  SizedBox(height: 20),
+                  Container(child: ElevatedButton(
+                    style: AppButtonStyle(),
+                    child: SuccessButtonChild('Confirm'),
+                    onPressed: (){
+                      FormOnSubmit();
+                    },
+                  ),)
+                ],
+              ),
+            )),
+          )
         ],
       ),
     );
