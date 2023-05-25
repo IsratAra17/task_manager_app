@@ -11,6 +11,7 @@ class PinVerification extends StatefulWidget {
 }
 
 class _PinVerificationState extends State<PinVerification> {
+  Map<String,String>Formvalues={"email":"","otp":""};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
