@@ -77,3 +77,20 @@ else{
   return false;
 }
 }
+Future<bool>VerifyOTPRequest(Email,OTP)async
+{
+  var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}/${OTP}");
+  var response=await http.get(URL,headers: RequestHeader);
+  var ResultCode=response.statusCode;
+  var ResultBody=json.decode(response.body);
+
+  if(ResultCode==200 && ResultBody['status']=="success"){
+    await WriteOTPVerification(OTP);
+    SuccessToast("Request Success");
+    return true;
+  }
+  else{
+    ErrorToast("Request fail ! try again");
+    return false;
+  }
+}
