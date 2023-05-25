@@ -1,7 +1,10 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:taskmanager/api/apiClient.dart';
 import 'package:taskmanager/style/style.dart';
 class PinVerification extends StatefulWidget {
   const PinVerification({Key? key}) : super(key: key);
@@ -11,7 +14,7 @@ class PinVerification extends StatefulWidget {
 }
 
 class _PinVerificationState extends State<PinVerification> {
-  Map<String,String>Formvalues={"email":"","otp":""};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
