@@ -5,6 +5,7 @@ import 'package:taskmanager/screen/onboarding/pinVerifiScreen.dart';
 import 'package:taskmanager/screen/onboarding/registrationScreen.dart';
 import 'package:taskmanager/screen/onboarding/setPasswordScreen.dart';
 import 'package:taskmanager/screen/onboarding/splashScreen.dart';
+import 'package:taskmanager/screen/task/homeScreen.dart';
 import 'package:taskmanager/screen/task/newTaskListScreen.dart';
 import 'package:taskmanager/utility/utility.dart';
 
@@ -15,7 +16,7 @@ main() async {
     runApp( MyApp("/login"));
   }
   else{
-    runApp( MyApp("/newTaskList"));
+    runApp( MyApp("/home"));
   }
 }
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       title: 'Task Manager',
       initialRoute:FirstRoute,
       routes: {
-        '/':(context)=>SplashScreen(),//home
+        '/':(context)=>HomeScreen(),//home
         '/login':(context)=>LoginScreen(),
         '/registration':(context)=>RegistrationScreen(),
         '/emailVerification':(context)=>EmailVerification(),
