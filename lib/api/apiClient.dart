@@ -63,8 +63,7 @@ Future<bool> SetPasswordRequest(FormValues) async{
   }
 }
 
-Future<bool>VerifyEmailRequest(Email)async
-{
+Future<bool>VerifyEmailRequest(Email)async {
 var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}");
 var response=await http.get(URL,headers: RequestHeader);
 var ResultCode=response.statusCode;
@@ -80,8 +79,7 @@ else{
   return false;
 }
 }
-Future<bool>VerifyOTPRequest(Email,OTP)async
-{
+Future<bool>VerifyOTPRequest(Email,OTP)async {
   var URL=Uri.parse("${BaseURL}/RecoverVerifyOTP/${Email}/${OTP}");
   var response=await http.get(URL,headers: RequestHeader);
   var ResultCode=response.statusCode;
@@ -95,5 +93,24 @@ Future<bool>VerifyOTPRequest(Email,OTP)async
   else{
     ErrorToast("Request fail ! try again");
     return false;
+  }
+}
+
+Future<List>TaskListRequest(Status) async {
+  var URL=Uri.parse("${BaseURL}/listTaskByStatus/${Status}");
+  String? token=await ReadUserData("token");
+  var RequestHeaderWithToken={"Content-Type":"application/json","token":'$token'};
+
+  var response=await http.get(URL,headers: RequestHeaderWithToken);
+  var ResultBody=json.decode(response.body);
+  var ResultCode=response.statusCode;
+
+  if(ResultCode==200 && ResultBody['status']=="success"){
+    SuccessToast("Request Success");
+    return ResultBody['data'];
+  }
+  else{
+    ErrorToast("Request fail ! try again");
+    return [];
   }
 }
