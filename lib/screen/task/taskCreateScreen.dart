@@ -41,6 +41,57 @@ class _taskCreateScreenState extends State<taskCreateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 appBar: AppBar(backgroundColor:colorGreen,title: Text("Create New Task"),),
+      body:
+      Stack(
+        children: [
+          ScreenBackground(context),
+          Container(
+            alignment: Alignment.center,
+            child: Loading?(Center(child: CircularProgressIndicator(),)):(SingleChildScrollView(
+              padding: EdgeInsets.all(30),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Add New Task', style: Head1Text(colorDarkBlue)),
+                  SizedBox(
+                    height: 1,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    onChanged:(Textvalue) {
+                      InputOnChange("title",Textvalue);
+                    },
+
+                    decoration: AppInputDecoration("Task Name"),
+                  ),
+                  SizedBox(height: 20,),
+                  TextFormField(
+                    onChanged: (Textvalue){InputOnChange("description", Textvalue);},
+                    decoration: AppInputDecoration("Info"),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                        style: AppButtonStyle(),
+                        onPressed: () {
+
+                          FormOnSubmit();
+                        },
+                        child: SuccessButtonChild('create')),
+                  ),
+                  SizedBox(height: 20,),
+                ],
+              ),
+            )),
+          ),
+        ],
+      ),
     );
   }
 }
