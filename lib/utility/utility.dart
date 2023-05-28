@@ -24,12 +24,10 @@ Future<String?> ReadUserData(Key) async {
   String? mydata= await prefs.getString(Key);
   return mydata;
 }
-ShowBase64Image(Base64String)
-async {
-  UriData? data=Uri.parse(Base64String).data;
-  Uint8List myImage=data!.contentAsBytes();
-  return myImage;
-
+ShowBase64Image(Base64String){
+  UriData? data= Uri.parse(Base64String).data;
+  Uint8List MyImage= data!.contentAsBytes();
+  return MyImage;
 }
 
 Future<bool>RemoveToken() async {
