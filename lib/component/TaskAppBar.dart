@@ -46,7 +46,7 @@ AppBar TaskAppBar(context) {
         icon: Icon(Icons.add_circle_outline_outlined),
       ),
       IconButton(
-        onPressed: () async {
+          onPressed: () async {
           await RemoveToken();
           Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);
         },
