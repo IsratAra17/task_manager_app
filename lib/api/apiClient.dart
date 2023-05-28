@@ -96,15 +96,13 @@ Future<bool>VerifyOTPRequest(Email,OTP)async {
   }
 }
 
-Future<List>TaskListRequest(Status) async {
+Future<List> TaskListRequest(Status) async {
   var URL=Uri.parse("${BaseURL}/listTaskByStatus/${Status}");
-  String? token=await ReadUserData("token");
+  String? token= await ReadUserData("token");
   var RequestHeaderWithToken={"Content-Type":"application/json","token":'$token'};
-
-  var response=await http.get(URL,headers: RequestHeaderWithToken);
-  var ResultBody=json.decode(response.body);
+  var response= await http.get(URL,headers:RequestHeaderWithToken);
   var ResultCode=response.statusCode;
-
+  var ResultBody=json.decode(response.body);
   if(ResultCode==200 && ResultBody['status']=="success"){
     SuccessToast("Request Success");
     return ResultBody['data'];

@@ -16,7 +16,7 @@ main() async {
     runApp( MyApp("/login"));
   }
   else{
-    runApp( MyApp("/home"));
+    runApp( MyApp("/"));
   }
 }
 

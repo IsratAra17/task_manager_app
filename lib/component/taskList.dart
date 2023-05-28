@@ -1,4 +1,3 @@
-import 'dart:js';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager/style/style.dart';
@@ -14,7 +13,8 @@ ListView TaskList(TaskItems) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(TaskItems[index]['title'],style: Head6Style(colorDarkBlue),),
-              Text(TaskItems[index]['description'],style: Head7Style(colorLightGray),)],
+              Text(TaskItems[index]['description'],style: Head7Style(colorLightGray),)
+            ],
           )),
         );
       });
