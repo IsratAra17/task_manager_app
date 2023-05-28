@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taskmanager/component/taskList.dart';
 
 import '../api/apiClient.dart';
 
@@ -34,6 +35,6 @@ class _completedTaskListState extends State<completedTaskList> {
             child: CircularProgressIndicator(),
           ))
         : RefreshIndicator(onRefresh: () async { await CallData(); },
-        child: Center(child: Text("Completed task")));
+        child: TaskList(TaskItems));
   }
 }
