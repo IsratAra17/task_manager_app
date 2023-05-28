@@ -15,10 +15,19 @@ AppBar TaskAppBar()
          CircleAvatar(backgroundColor:Colors.transparent,
            radius: 24,
            child: ClipOval(
-             child: Image.memory(ShowBase64Image("Base64String")),
+             child: Image.memory(ShowBase64Image("Base64String"),
+
+             ),
            ),
 
          ),
+         SizedBox(height: 10,),
+         Column(mainAxisAlignment:MainAxisAlignment.center,
+           crossAxisAlignment:CrossAxisAlignment.center,
+           children: [
+             Text("Ara"),
+             Text("@ara"),
+           ],),
 
        ],
      ),
