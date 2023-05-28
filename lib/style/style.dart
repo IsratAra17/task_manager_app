@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -12,6 +15,16 @@ const colorWhite = Color.fromRGBO(255, 255, 255, 1.0);
 const colorDarkBlue = Color.fromRGBO(44, 62, 80, 1.0);
 const colorLightGray = Color.fromRGBO(135, 142, 150, 1.0);
 const colorLight = Color.fromRGBO(211, 211, 211, 1.0);
+
+SizedBox ItemSizebox(child) {
+  return SizedBox(
+    width: double.infinity,
+    child: Container(
+      padding: EdgeInsets.all(10),
+      child: child,
+    ),
+  );
+}
 
 TextStyle Head1Text(textColor) {
   return TextStyle(
@@ -29,6 +42,7 @@ TextStyle Head6Style(textColor) {
     fontWeight: FontWeight.w400,
   );
 }
+
 TextStyle Head7Style(textColor) {
   return TextStyle(
     fontSize: 13,
@@ -66,47 +80,49 @@ DecoratedBox AppDropDownStyle(child) {
     ),
   );
 }
-SvgPicture ScreenBackground(context)
-{
+
+SvgPicture ScreenBackground(context) {
   return SvgPicture.asset(
     'assets/images/screen-back.svg',
-    alignment:Alignment.center ,
-    width:MediaQuery.of(context).size.width ,
-    height:MediaQuery.of(context).size.height ,
+    alignment: Alignment.center,
+    width: MediaQuery.of(context).size.width,
+    height: MediaQuery.of(context).size.height,
     fit: BoxFit.cover,
-
   );
 }
 
-ButtonStyle AppButtonStyle(){
+ButtonStyle AppButtonStyle() {
   return ElevatedButton.styleFrom(
       elevation: 1,
       padding: EdgeInsets.zero,
       backgroundColor: Colors.transparent,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))
-  );
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
 }
-TextStyle ButtonTextStyle(){
+
+TextStyle ButtonTextStyle() {
   return TextStyle(
-      fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w400,
     fontFamily: 'poppins',
     fontSize: 14,
   );
 }
 
-Ink SuccessButtonChild(String ButtonText)
-{
+Ink SuccessButtonChild(String ButtonText) {
   return Ink(
-    decoration: BoxDecoration(color: colorGreen,borderRadius: BorderRadius.circular(6)),
+    decoration: BoxDecoration(
+        color: colorGreen, borderRadius: BorderRadius.circular(6)),
     child: Container(
       height: 45,
       alignment: Alignment.center,
-      child: Text(ButtonText,style: ButtonTextStyle(),),
+      child: Text(
+        ButtonText,
+        style: ButtonTextStyle(),
+      ),
     ),
   );
 }
 
-void SuccessToast(msg){
+void SuccessToast(msg) {
   Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
@@ -114,12 +130,10 @@ void SuccessToast(msg){
       timeInSecForIosWeb: 1,
       backgroundColor: colorGreen,
       textColor: colorWhite,
-      fontSize: 16.0
-  );
-
+      fontSize: 16.0);
 }
-void ErrorToast(msg)
-{
+
+void ErrorToast(msg) {
   Fluttertoast.showToast(
     msg: msg,
     toastLength: Toast.LENGTH_SHORT,
@@ -129,10 +143,9 @@ void ErrorToast(msg)
     textColor: colorWhite,
     fontSize: 16.0,
   );
-
 }
-PinTheme AppOTPstyle()
-{
+
+PinTheme AppOTPstyle() {
   return PinTheme(
     inactiveColor: colorLight,
     inactiveFillColor: colorWhite,
@@ -144,6 +157,5 @@ PinTheme AppOTPstyle()
     borderWidth: 0.5,
     fieldWidth: 40,
     activeFillColor: Colors.white,
-
   );
 }
