@@ -72,6 +72,7 @@ appBar: AppBar(backgroundColor:colorGreen,title: Text("Create New Task"),),
                   TextFormField(
                     onChanged: (Textvalue){InputOnChange("description", Textvalue);},
                     decoration: AppInputDecoration("Info"),
+                    maxLines: 100,
                   ),
                   SizedBox(
                     height: 20,
