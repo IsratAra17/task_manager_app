@@ -37,6 +37,6 @@ class _cancelTaskListState extends State<cancelTaskList> {
         onRefresh: () async {
           await CallData();
         },
-        child: Center(child: Text("Cancel task")));
+        child: TaskList(TaskItems));
   }
 }
