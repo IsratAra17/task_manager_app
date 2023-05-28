@@ -5,6 +5,7 @@ import 'package:taskmanager/component/cancelTaskList.dart';
 import 'package:taskmanager/component/completedTaskList.dart';
 import 'package:taskmanager/component/newTaskList.dart';
 import 'package:taskmanager/component/progressTaskList.dart';
+import 'package:taskmanager/utility/utility.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Map<String,String>ProfileData={"email":"","firstName":"","lastName":"","photo":DefaultProfilePic};
   int TabIndex=0;
   onItemTapped(int index)
   {
@@ -30,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TaskAppBar(context),
+      appBar: TaskAppBar(context,ProfileData),
       body: widgetOptions.elementAt(TabIndex),
       bottomNavigationBar: appBottomNavBar(TabIndex,onItemTapped),
     );
