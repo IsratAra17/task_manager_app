@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/component/TaskAppBar.dart';
 import 'package:taskmanager/component/appBottomNavBar.dart';
 import 'package:taskmanager/component/cancelTaskList.dart';
 import 'package:taskmanager/component/completedTaskList.dart';
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: TaskAppBar(),
       body: widgetOptions.elementAt(TabIndex),
       bottomNavigationBar: appBottomNavBar(TabIndex,onItemTapped),
     );
