@@ -36,7 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
     String? lastName=await ReadUserData('lastName');
     String? photo=await ReadUserData('photo');
     setState(() {
-      ProfileData={"email":'$email',"firstName":'$firstName',"lastName":'$lastName',"photo":'$photo'};    });
+      ProfileData={"email":'$email',"firstName":'$firstName',"lastName":'$lastName',"photo":'$photo'};
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    ReadAppBarData();
+    super.initState();
   }
   @override
   Widget build(BuildContext context) {
