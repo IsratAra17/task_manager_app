@@ -34,6 +34,15 @@ TextStyle Head1Text(textColor) {
     fontWeight: FontWeight.w700,
   );
 }
+TextStyle Head9Style(textColor) {
+  return TextStyle(
+    color: textColor,
+    fontSize: 9,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w400,
+  );
+}
+
 
 TextStyle Head6Style(textColor) {
   return TextStyle(
