@@ -34,6 +34,7 @@ ShowBase64Image(Base64String){
 
 Future<bool>RemoveToken() async {
   final prefs = await SharedPreferences.getInstance();
-await prefs.remove('token');
+//await prefs.remove('token');//only token removed
+await prefs.clear();//All shared Pref data deleted
 return true;
 }
