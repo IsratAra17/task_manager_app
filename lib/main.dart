@@ -7,6 +7,7 @@ import 'package:taskmanager/screen/onboarding/setPasswordScreen.dart';
 import 'package:taskmanager/screen/onboarding/splashScreen.dart';
 import 'package:taskmanager/screen/task/homeScreen.dart';
 import 'package:taskmanager/screen/task/newTaskListScreen.dart';
+import 'package:taskmanager/screen/task/taskCreateScreen.dart';
 import 'package:taskmanager/utility/utility.dart';
 
 main() async {
@@ -39,7 +40,8 @@ class MyApp extends StatelessWidget {
         '/emailVerification':(context)=>EmailVerification(),
         '/pinVerification':(context)=>PinVerification(),
         '/setPassword':(context)=>SetPasswordScreen(),
-        '/newTaskList':(context)=>NewTaskListScreen()
+        '/newTaskList':(context)=>NewTaskListScreen(),
+        '/taskCreate':(context)=>taskCreateScreen()
 
       },
 
