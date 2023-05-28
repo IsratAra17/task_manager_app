@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskmanager/api/apiClient.dart';
 import 'package:taskmanager/style/style.dart';
 
 class taskCreateScreen extends StatefulWidget {
@@ -9,7 +10,7 @@ class taskCreateScreen extends StatefulWidget {
 }
 
 class _taskCreateScreenState extends State<taskCreateScreen> {
-  Map<String,String> FormValues={"title":"", "description":"","status":"New"};
+  Map<String,String>FormValues={"title":"", "description":"","status":"New"};
   bool Loading=false;
 
   InputOnChange(MapKey, Textvalue){
@@ -22,13 +23,13 @@ class _taskCreateScreenState extends State<taskCreateScreen> {
     if(FormValues['title']!.length==0){
       ErrorToast('Title Required !');
     }
-    else if(FormValues['Description']!.length==0){
+    else if(FormValues['description']!.length==0){
       ErrorToast('Description Required !');
     }
 
     else{
       setState(() {Loading=true;});
-      bool res=true;
+      bool res=await TaskCreateRequest(FormValues);
       if(res==true){
         Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
       }
@@ -41,58 +42,53 @@ class _taskCreateScreenState extends State<taskCreateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 appBar: AppBar(backgroundColor:colorGreen,title: Text("Create New Task"),),
-      body:
-      Stack(
+      body: Stack(
         children: [
           ScreenBackground(context),
           Container(
             alignment: Alignment.center,
-            child: Loading?(Center(child: CircularProgressIndicator(),)):(SingleChildScrollView(
+            child: Loading?(Center(child: CircularProgressIndicator())):(SingleChildScrollView(
               padding: EdgeInsets.all(30),
-
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Add New Task', style: Head1Text(colorDarkBlue)),
-                  SizedBox(
-                    height: 1,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  Text("Add New Task", style: Head1Text(colorDarkBlue)),
+                  SizedBox(height: 1),
                   TextFormField(
-                    onChanged:(Textvalue) {
+                    onChanged: (Textvalue){
                       InputOnChange("title",Textvalue);
                     },
-
                     decoration: AppInputDecoration("Task Name"),
                   ),
-                  SizedBox(height: 20,),
-                  TextFormField(
-                    onChanged: (Textvalue){InputOnChange("description", Textvalue);},
-                    decoration: AppInputDecoration("Info"),
-                    maxLines: 100,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    child: ElevatedButton(
-                        style: AppButtonStyle(),
-                        onPressed: () {
 
-                          FormOnSubmit();
-                        },
-                        child: SuccessButtonChild('create')),
+                  SizedBox(height: 20),
+
+                  TextFormField(
+                    onChanged: (Textvalue){
+                      InputOnChange("description",Textvalue);
+                    },
+                    maxLines: 10,
+                    decoration: AppInputDecoration("Info"),
                   ),
-                  SizedBox(height: 20,),
+
+                  SizedBox(height: 20),
+
+
+                  Container(child: ElevatedButton(
+                    style: AppButtonStyle(),
+                    child: SuccessButtonChild('Create'),
+                    onPressed: (){
+                      FormOnSubmit();
+                    },
+                  ),),
                 ],
               ),
             )),
-          ),
+          )
         ],
       ),
+
     );
   }
 }
