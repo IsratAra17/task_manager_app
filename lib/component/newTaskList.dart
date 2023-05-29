@@ -12,6 +12,7 @@ class newTaskList extends StatefulWidget {
 
 class _newTaskListState extends State<newTaskList> {
   List TaskItems = [];
+  String Status = "New";
   bool Loading = true;
   @override
   void initState() {
@@ -63,8 +64,45 @@ class _newTaskListState extends State<newTaskList> {
               builder: (BuildContext context, StateSetter setState) {
             return Container(
               padding: EdgeInsets.all(30),
-              height: 300,
-              child: Column(),
+              height: 360,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  RadioListTile(
+                    title: Text("New"),
+                    value: "New",
+                    groupValue: Status,
+                    onChanged: (value) {
+
+                    },
+                  ),
+                  RadioListTile(
+                    title: Text("Progress"),
+                    value: "Progress",
+                    groupValue: Status,
+                    onChanged: (value) {
+
+                    },
+                  ),
+                  RadioListTile(
+                    title: Text("Completed"),
+                    value: "Completed",
+                    groupValue: Status,
+                    onChanged: (value) {
+
+                    },
+                  ),
+                  RadioListTile(
+                    title: Text("Canceled"),
+                    value: "Canceled",
+                    groupValue: Status,
+                    onChanged: (value) {
+
+                    },
+                  ),
+
+                ],
+              ),
             );
           });
         });
