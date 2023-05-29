@@ -107,7 +107,13 @@ ButtonStyle AppButtonStyle() {
       backgroundColor: Colors.transparent,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
 }
-
+ButtonStyle AppStatusBtnStyle(btnColor) {
+  return ElevatedButton.styleFrom(
+      elevation: 1,
+      padding: EdgeInsets.zero,
+      backgroundColor:btnColor
+  );
+}
 TextStyle ButtonTextStyle() {
   return TextStyle(
     fontWeight: FontWeight.w400,
