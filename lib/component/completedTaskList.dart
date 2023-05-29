@@ -27,6 +27,28 @@ class _completedTaskListState extends State<completedTaskList> {
       TaskItems = data;
     });
   }
+  DeleteItem(id) async{
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text("Delete !"),
+            content: Text("Onece delete, you can't get it back"),
+            actions: [
+              OutlinedButton(onPressed: () async {
+                Navigator.pop(context);
+                setState(() {Loading=true;});
+                await TaskDeleteRequest(id);
+                await CallData();
+              }, child: Text('Yes')),
+              OutlinedButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text('No')),
+            ],
+          );
+        }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
