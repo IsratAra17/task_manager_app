@@ -30,6 +30,12 @@ class _cancelTaskListState extends State<cancelTaskList> {
     });
   }
 
+  UpdateStatus(id) async{
+    setState(() {Loading=true;});
+    await TaskUpdateRequest(id,Status);
+    await CallData();
+    setState(() {Status = "Canceled";});
+  }
 
   DeleteItem(id) async{
     showDialog(
@@ -54,66 +60,60 @@ class _cancelTaskListState extends State<cancelTaskList> {
     );
   }
 
-  StatusChange(id) async {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
+  StatusChange(id) async{
+    showModalBottomSheet(context: context,
+        builder: (context){
           return StatefulBuilder(
-              builder: (BuildContext context, StateSetter setState) {
+              builder: (BuildContext context,StateSetter setState){
                 return Container(
                   padding: EdgeInsets.all(30),
                   height: 360,
-                  child: Column(
+                  child:Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      RadioListTile(
-                        title: Text("New"),
-                        value: "New",
-                        groupValue: Status,
-                        onChanged: (value) {
-
+                      RadioListTile(title: Text("New"), value: "New", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
                         },
                       ),
-                      RadioListTile(
-                        title: Text("Progress"),
-                        value: "Progress",
-                        groupValue: Status,
-                        onChanged: (value) {
-
+                      RadioListTile(title: Text("Progress"), value: "Progress", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
                         },
                       ),
-                      RadioListTile(
-                        title: Text("Completed"),
-                        value: "Completed",
-                        groupValue: Status,
-                        onChanged: (value) {
-
+                      RadioListTile(title: Text("Completed"), value: "Completed", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
                         },
                       ),
-                      RadioListTile(
-                        title: Text("Canceled"),
-                        value: "Canceled",
-                        groupValue: Status,
-                        onChanged: (value) {
-
+                      RadioListTile(title: Text("Canceled"), value: "Canceled", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
                         },
                       ),
-                      Container(child: ElevatedButton(onPressed: () async {
-                        Navigator.pop(context);
-                        setState(() {
-                          Loading = true;
-                        });
-                        await TaskUpdateRequest(id,Status);
-                        await CallData();
-                        setState(() {
-                          Status = "New";
-                        });
-                      },style: AppButtonStyle(),child:SuccessButtonChild('Confirm'),),)
+                      ElevatedButton(
+                        style: AppButtonStyle(),
+                        child: SuccessButtonChild('Confirm'),
+                        onPressed: (){
+                          Navigator.pop(context);
+                          UpdateStatus(id);
+                        },
+                      ),
                     ],
                   ),
                 );
-              });
-        });
+              }
+          );
+        }
+    );
   }
 
   @override
