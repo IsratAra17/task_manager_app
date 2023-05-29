@@ -38,3 +38,5 @@ Future<bool>RemoveToken() async {
 await prefs.clear();//All shared Pref data deleted
 return true;
 }
+
+
