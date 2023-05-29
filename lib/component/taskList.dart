@@ -3,9 +3,29 @@ import 'package:flutter/material.dart';
 import 'package:taskmanager/style/style.dart';
 
 ListView TaskList(TaskItems) {
+
   return ListView.builder(
       itemCount: TaskItems.length,
-      itemBuilder: (context, index) {
+      itemBuilder: (context, index)
+
+      {
+
+        Color statusColor=colorGreen;
+        if(TaskItems['index']['status']=="New")
+          {
+            statusColor=colorBlue;
+          }
+
+       else if(TaskItems['index']['status']=="Progress")
+        {
+          statusColor=colorOrange;
+        }
+       else if(TaskItems['index']['status']=="Canceled")
+        {
+          statusColor=colorRed;
+        }
+
+
         return Card(
           child: ItemSizebox(
                Column(
