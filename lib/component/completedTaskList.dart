@@ -49,6 +49,20 @@ class _completedTaskListState extends State<completedTaskList> {
         }
     );
   }
+  StatusChange(id) async {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                  padding: EdgeInsets.all(30),
+                  height: 300,
+                  child: Column(),
+                );
+              });
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +71,6 @@ class _completedTaskListState extends State<completedTaskList> {
             child: CircularProgressIndicator(),
           ))
         : RefreshIndicator(onRefresh: () async { await CallData(); },
-        child: TaskList(TaskItems,DeleteItem));
+        child: TaskList(TaskItems,DeleteItem,StatusChange));
   }
 }

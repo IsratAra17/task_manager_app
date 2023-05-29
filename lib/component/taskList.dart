@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager/style/style.dart';
 
-ListView TaskList(TaskItems,DeleteItem) {
+ListView TaskList(TaskItems,DeleteItem,StatusChange) {
 
   return ListView.builder(
       itemCount: TaskItems.length,
@@ -43,7 +43,7 @@ ListView TaskList(TaskItems,DeleteItem) {
                   StatusChild(TaskItems[index]['status'],statusColor),
                   Container(child: Row(
                     children: [
-                      SizedBox(height: 30,width: 50,child: ElevatedButton(onPressed: (){},child: Icon(Icons.edit_location_alt_outlined,size: 16,),style: AppStatusBtnStyle(colorBlue),),),
+                      SizedBox(height: 30,width: 50,child: ElevatedButton(onPressed: (){StatusChange(TaskItems[index]['_id']);},child: Icon(Icons.edit_location_alt_outlined,size: 16,),style: AppStatusBtnStyle(colorBlue),),),
                       SizedBox(width: 10,),
                       SizedBox(height: 30,width: 50,child: ElevatedButton(onPressed: (){
                         DeleteItem(TaskItems[index]['_id']);

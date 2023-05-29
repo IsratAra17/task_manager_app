@@ -26,27 +26,48 @@ class _newTaskListState extends State<newTaskList> {
       TaskItems = data;
     });
   }
-  DeleteItem(id) async{
+
+  DeleteItem(id) async {
     showDialog(
         context: context,
-        builder: (BuildContext context){
+        builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Delete !"),
             content: Text("Onece delete, you can't get it back"),
             actions: [
-              OutlinedButton(onPressed: () async {
-                Navigator.pop(context);
-                setState(() {Loading=true;});
-                await TaskDeleteRequest(id);
-                await CallData();
-              }, child: Text('Yes')),
-              OutlinedButton(onPressed: (){
-                Navigator.pop(context);
-              }, child: Text('No')),
+              OutlinedButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    setState(() {
+                      Loading = true;
+                    });
+                    await TaskDeleteRequest(id);
+                    await CallData();
+                  },
+                  child: Text('Yes')),
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('No')),
             ],
           );
-        }
-    );
+        });
+  }
+
+  StatusChange(id) async {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+            return Container(
+              padding: EdgeInsets.all(30),
+              height: 300,
+              child: Column(),
+            );
+          });
+        });
   }
 
   @override
@@ -59,6 +80,6 @@ class _newTaskListState extends State<newTaskList> {
             onRefresh: () async {
               await CallData();
             },
-            child: TaskList(TaskItems,DeleteItem));
+            child: TaskList(TaskItems, DeleteItem, StatusChange));
   }
 }
