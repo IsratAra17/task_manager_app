@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:taskmanager/api/apiClient.dart';
 import 'package:taskmanager/component/taskList.dart';
+import 'package:taskmanager/style/style.dart';
 
 class newTaskList extends StatefulWidget {
   const newTaskList({Key? key}) : super(key: key);
@@ -100,7 +101,7 @@ class _newTaskListState extends State<newTaskList> {
 
                     },
                   ),
-
+Container(child: ElevatedButton(onPressed: (){},style: AppButtonStyle(),child:SuccessButtonChild('Confirm'),),)
                 ],
               ),
             );
