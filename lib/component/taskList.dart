@@ -26,7 +26,7 @@ ListView TaskList(TaskItems) {
                     ],
                   ),)
                 ],
-              )g
+              )
 
             ],
           )),
