@@ -95,7 +95,17 @@ class _progressTaskListState extends State<progressTaskList> {
 
                         },
                       ),
-                      Container(child: ElevatedButton(onPressed: (){},style: AppButtonStyle(),child:SuccessButtonChild('Confirm'),),)
+                      Container(child: ElevatedButton(onPressed: () async {
+                        Navigator.pop(context);
+                        setState(() {
+                          Loading = true;
+                        });
+                        await TaskUpdateRequest(id,Status);
+                        await CallData();
+                        setState(() {
+                          Status = "New";
+                        });
+                      },style: AppButtonStyle(),child:SuccessButtonChild('Confirm'),),)
                     ],
                   ),
                 );

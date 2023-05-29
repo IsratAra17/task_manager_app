@@ -15,7 +15,7 @@ class completedTaskList extends StatefulWidget {
 class _completedTaskListState extends State<completedTaskList> {
   List TaskItems = [];
   bool Loading = true;
-  String Status="Completed";
+  String Status = "Completed";
   @override
   void initState() {
     CallData();
@@ -29,77 +29,86 @@ class _completedTaskListState extends State<completedTaskList> {
       TaskItems = data;
     });
   }
-  DeleteItem(id) async{
+
+  DeleteItem(id) async {
     showDialog(
         context: context,
-        builder: (BuildContext context){
+        builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Delete !"),
             content: Text("Onece delete, you can't get it back"),
             actions: [
-              OutlinedButton(onPressed: () async {
-                Navigator.pop(context);
-                setState(() {Loading=true;});
-                await TaskDeleteRequest(id);
-                await CallData();
-              }, child: Text('Yes')),
-              OutlinedButton(onPressed: (){
-                Navigator.pop(context);
-              }, child: Text('No')),
+              OutlinedButton(
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    setState(() {
+                      Loading = true;
+                    });
+                    await TaskDeleteRequest(id);
+                    await CallData();
+                  },
+                  child: Text('Yes')),
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('No')),
             ],
           );
-        }
-    );
+        });
   }
+
   StatusChange(id) async {
     showModalBottomSheet(
         context: context,
         builder: (context) {
           return StatefulBuilder(
               builder: (BuildContext context, StateSetter setState) {
-                return Container(
-                  padding: EdgeInsets.all(30),
-                  height: 360,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      RadioListTile(
-                        title: Text("New"),
-                        value: "New",
-                        groupValue: Status,
-                        onChanged: (value) {
-
-                        },
-                      ),
-                      RadioListTile(
-                        title: Text("Progress"),
-                        value: "Progress",
-                        groupValue: Status,
-                        onChanged: (value) {
-
-                        },
-                      ),
-                      RadioListTile(
-                        title: Text("Completed"),
-                        value: "Completed",
-                        groupValue: Status,
-                        onChanged: (value) {
-
-                        },
-                      ),
-                      RadioListTile(
-                        title: Text("Canceled"),
-                        value: "Canceled",
-                        groupValue: Status,
-                        onChanged: (value) {
-
-                        },
-                      ),
-                      Container(child: ElevatedButton(onPressed: (){},style: AppButtonStyle(),child:SuccessButtonChild('Confirm'),),)
-                    ],
+            return Container(
+              padding: EdgeInsets.all(30),
+              height: 360,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  RadioListTile(
+                    title: Text("New"),
+                    value: "New",
+                    groupValue: Status,
+                    onChanged: (value) {},
                   ),
-                );
-              });
+                  RadioListTile(
+                    title: Text("Progress"),
+                    value: "Progress",
+                    groupValue: Status,
+                    onChanged: (value) {},
+                  ),
+                  RadioListTile(
+                    title: Text("Completed"),
+                    value: "Completed",
+                    groupValue: Status,
+                    onChanged: (value) {},
+                  ),
+                  RadioListTile(
+                    title: Text("Canceled"),
+                    value: "Canceled",
+                    groupValue: Status,
+                    onChanged: (value) {},
+                  ),
+                  Container(child: ElevatedButton(onPressed: () async {
+                    Navigator.pop(context);
+                    setState(() {
+                      Loading = true;
+                    });
+                    await TaskUpdateRequest(id,Status);
+                    await CallData();
+                    setState(() {
+                      Status = "New";
+                    });
+                  },style: AppButtonStyle(),child:SuccessButtonChild('Confirm'),),)
+                ],
+              ),
+            );
+          });
         });
   }
 
@@ -109,7 +118,10 @@ class _completedTaskListState extends State<completedTaskList> {
         ? (Center(
             child: CircularProgressIndicator(),
           ))
-        : RefreshIndicator(onRefresh: () async { await CallData(); },
-        child: TaskList(TaskItems,DeleteItem,StatusChange));
+        : RefreshIndicator(
+            onRefresh: () async {
+              await CallData();
+            },
+            child: TaskList(TaskItems, DeleteItem, StatusChange));
   }
 }
