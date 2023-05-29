@@ -63,6 +63,6 @@ class _cancelTaskListState extends State<cancelTaskList> {
         onRefresh: () async {
           await CallData();
         },
-        child: TaskList(TaskItems));
+        child: TaskList(TaskItems,DeleteItem));
   }
 }

@@ -57,6 +57,6 @@ class _completedTaskListState extends State<completedTaskList> {
             child: CircularProgressIndicator(),
           ))
         : RefreshIndicator(onRefresh: () async { await CallData(); },
-        child: TaskList(TaskItems));
+        child: TaskList(TaskItems,DeleteItem));
   }
 }
